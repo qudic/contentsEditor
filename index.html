@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="x-ua-compatible" content="IE=edge" />
+	<title>QUDIC Content Editor</title>
+	<meta name="description" content="miniPaint is free online image editor using HTML5. Edit, adjust your images, add effects online in your browser, without installing anything..." />
+	<meta name="keywords" content="photo, image, picture, transparent, layers, free, edit, html5, canvas, javascript, online, photoshop, gimp, effects, sharpen, blur, magic wand tool, clone tool, rotate, resize, photoshop online, online tools, tilt shift, sprites, keypoints" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="shortcut icon" href="images/favicon.png?v2" />
+	
+	
+	<script src="dist/bundle.js"></script>
+</head>
+<body>
+	<div class="wrapper">
+		
+		<div class="submenu">
+			
+			<div class="block attributes" id="action_attributes"></div>
+			<div class="clear"></div>
+		</div>
+		
+		<div class="sidebar_left" id="tools_container"></div>
+		
+		<div class="main_wrapper" id="main_wrapper">
+			<div class="canvas_wrapper" id="canvas_wrapper">
+				<div id="mouse"></div>
+				<div class="transparent-grid" id="canvas_minipaint_background"></div>
+				<canvas id="canvas_minipaint">
+					<div class="trn error">
+						Your browser does not support canvas or JavaScript is not enabled.
+					</div>
+				</canvas>
+			</div>
+		</div>
+
+		<div class="sidebar_right">
+			<div class="preview block">
+				<h2 class="trn toggle" data-target="toggle_preview">Preview</h2>
+				<div id="toggle_preview"></div>
+			</div>
+			
+			<div class="colors block">
+				<h2 class="trn toggle" data-target="toggle_colors">Colors</h2>
+				<input
+					title="Click to change color" 
+					type="color" 
+					class="color_area" 
+					id="main_color" 
+					value="#0000ff"	/>
+				<div class="content" id="toggle_colors"></div>
+			</div>
+			
+			<div class="block" id="info_base">
+				<h2 class="trn toggle toggle-full" data-target="toggle_info">Information</h2>
+				<div class="content" id="toggle_info"></div>
+			</div>
+			
+			<div class="details block" id="details_base">
+				<h2 class="trn toggle toggle-full" data-target="toggle_details">Layer details</h2>
+				<div class="content" id="toggle_details"></div>
+			</div>
+			
+			<div class="layers block">
+				<h2 class="trn">Layers</h2>
+				<div class="content" id="layers_base"></div>
+			</div>
+		</div>
+	</div>
+	<div class="mobile_menu">
+		<button class="right_mobile_menu" id="mobile_menu_button" type="button"></button>
+	</div>
+	<div class="ddsmoothmenu" id="main_menu"></div>
+	<div class="top">
+		<h1>QUDIC Content Editor</h1>
+	</div>
+	
+
+	<div class="template" id="main_menu">
+		<ul>
+			<li><a class="trn dots" data-target="file/open.open_template.t1" href="#"><img src="./template/t1.png" alt="아이스크림"></a></li>
+			<li><a class="trn dots" data-target="file/open.open_template.t2" href="#"><img src="./template/t2.png" alt="고민"></a></li>
+			<li><a class="trn dots" data-target="file/open.open_template.t3" href="#"><img src="./template/t3.png" alt="밀크씨슬"></a></li>
+			<li><a class="trn dots" data-target="file/open.open_template.t4" href="#"><img src="./template/t4.png" alt="간보호"></a></li>
+		</ul>
+	</div>
+	<div class="hidden" id="tmp"></div>
+	<div id="popup"></div>
+	<div class="top-toolbar" id="main_menu">
+		<a class="tb-btn" data-target="file/new.new" href="#" title="New">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M14.568.075c2.202 1.174 5.938 4.883 7.432 6.881-1.286-.9-4.044-1.657-6.091-1.179.222-1.468-.185-4.534-1.341-5.702zm7.432 10.925v13h-20v-24h8.409c4.857 0 3.335 8 3.335 8 3.009-.745 8.256-.419 8.256 3zm-15 1.5c0 .828.672 1.5 1.501 1.5.827 0 1.499-.672 1.499-1.5s-.672-1.5-1.499-1.5c-.829 0-1.501.672-1.501 1.5zm10 6.5l-3.5-6-2.093 2.968-1.31-.968-3.097 4h10z"/></svg>
+		</a>
+		<a class="tb-btn" data-target="file/open.open_source" href="#" title="Open Source">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M1.859 6l-.489-2h21.256l-.491 2h-20.276zm1.581-4l-.439-2h17.994l-.439 2h-17.116zm20.56 16h-24l2 6h20l2-6zm-20.896-2l-.814-6h19.411l-.839 6h2.02l1.118-8h-24l1.085 8h2.019zm2.784-3.995c-.049-.555.419-1.005 1.043-1.005.625 0 1.155.449 1.185 1.004.03.555-.438 1.005-1.044 1.005-.605 0-1.136-.449-1.184-1.004zm7.575-.224l-1.824 2.68-1.813-1.312-2.826 2.851h10l-3.537-4.219z"/></svg>
+		</a>
+		<a class="tb-btn" data-target="file/save.download_source" href="#"  title="Downlod Source">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.563 22.282l-3.563.718.72-3.562 2.843 2.844zm-2.137-3.552l2.845 2.845 7.729-7.73-2.845-2.845-7.729 7.73zm-3.062 2.27h-7.364v-7h12.327l6.673-6.688v-2.312l-4-4h-18v22h9.953l.411-2zm-5.364-18h12v7h-12v-7zm8.004 6h2.996v-5h-2.996v5z"/></svg>
+		</a>
+		<a class="tb-btn" data-target="file/save.download_image" href="#"  title="Downlod Image">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15 9h4l-7 7-7-7h4v-9h6v9zm3.213-7.246l-1.213 1.599c2.984 1.732 5 4.955 5 8.647 0 5.514-4.486 10-10 10s-10-4.486-10-10c0-3.692 2.016-6.915 5-8.647l-1.213-1.599c-3.465 2.103-5.787 5.897-5.787 10.246 0 6.627 5.373 12 12 12s12-5.373 12-12c0-4.349-2.322-8.143-5.787-10.246zm-9.213 15.246c-.553 0-1 .447-1 1s.447 1 1 1 1-.447 1-1-.447-1-1-1zm3 0c-.553 0-1 .447-1 1s.447 1 1 1 1-.447 1-1-.447-1-1-1zm3 0c-.553 0-1 .447-1 1s.447 1 1 1 1-.447 1-1-.447-1-1-1z"/></svg>
+		</a>
+	</div>
+</body>
+</html>
